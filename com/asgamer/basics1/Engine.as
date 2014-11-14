@@ -1,3 +1,5 @@
+
+
 //our package... simply put, the directory structure to this file
 package com.asgamer.basics1
 {
@@ -25,4 +27,3 @@ package com.asgamer.basics1
 	}
 	
 }
-
