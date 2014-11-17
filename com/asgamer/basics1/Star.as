@@ -38,6 +38,8 @@ package com.asgamer.basics1
 				
 				if (y > stageRef.stageHeight)
 					setupStar();
+		
+		
 		}
 	}
 }
