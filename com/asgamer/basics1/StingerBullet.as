@@ -7,49 +7,46 @@ package com.asgamer.basics1
 	import flash.display.Stage;
 	import flash.events.Event;
 	
-	public class LaserBlue extends MovieClip
+	public class StingerBullet extends MovieClip
 	{
 		
 		private var stageRef:Stage;
-		private var bulletSpeed:Number = 16;
+		private var target:Ship;
 		
-		public function LaserBlue (stageRef:Stage, x:Number, y:Number) : void
+		private var vx:Number;
+		
+		public function StingerBullet(stageRef:Stage, target:Ship, x:Number, y:Number, vx:Number) : void
 		{
 			this.stageRef = stageRef;
+			this.target = target;
 			this.x = x;
 			this.y = y;
+			this.vx = vx;
 			
 			addEventListener(Event.ENTER_FRAME, loop, false, 0, true);
 		}
 		
 		private function loop(e:Event) : void
 		{
-			//move bullet up
-			y -= bulletSpeed;
+			x += vx;
 			
-			if (y < 0)
+			if (x > stageRef.stageWidth || x < 0)
 				removeSelf();
-		}
-		for (var i:int = 0; i < Engine.enemyList.length; i++)
-		{
-			if (hitTestObject(Engine.enemyList[i].hit))
+			
+			if (hitTestObject(target.hit))
 			{
-				trace("hitEnemy");
-				Engine.enemyList[i].takeHit();
+				trace("hitME");
 				removeSelf();
 			}
 		}
 		
 		private function removeSelf() : void
 		{
-			removeEventListener(Event.ENTER_FRAME, loop);
-			
+			removeEventListener(Event.ENTER_FRAME, loop); //don't forget to add this
 			if (stageRef.contains(this))
-							stageRef.removeChild(this);
-		
+					stageRef.removeChild(this);
 		}
 		
 	}
 	
 }
-
